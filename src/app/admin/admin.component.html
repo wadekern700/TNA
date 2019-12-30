@@ -1,13 +1,50 @@
-<div style="background-color: white">
-  <div *ngFor="let g of guests">
-    <label for="">FirstName</label>
-    {{g.firstName}}
-    <br />
-    <label for="">LastName</label>
-    {{g.lastName}}
-    <br />
-    <label for="">Food</label>
-    {{g.foodOption}}
-    <br />
+<div class=" test">
+  <div class="row">
+    <div class="col-sm-8">
+
+      <div class="row">
+        <div class="col-4">
+          <label class=" text-primary">FirstName</label>
+        </div>
+        <div class="col-4">
+          <label class=" text-primary">LastName</label>
+        </div>
+        <div class="col-4">
+          <label class=" text-primary" for="">Food</label>
+        </div>
+      </div>
+      <div *ngFor="let g of (guests | guestsFilter : searchValue)">
+        <div class="row">
+          <div class="col-4">
+            <span>{{g.firstName}}</span>
+          </div>
+          <div class="col-4">
+            <span> {{g.lastName}} </span>
+          </div>
+          <div class="col-4">
+            <span> {{g.foodOption}} </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="row">
+        <label class=" text-primary">Total Registered</label>
+        {{": "+guests.length}}
+      </div>
+      <div class="row">
+        <label class=" text-primary">Chicken Count </label>
+        {{": "+chickenCount}}
+      </div>
+      <div class="row">
+        <label class=" text-primary">Steak Count </label>
+        {{": "+steakCount}}
+      </div>
+      <div class="row">
+        <label class=" text-primary">Seach Guests </label>
+        <input class="ml-2" type="text" [(ngModel)]="searchValue" />
+      </div>
+    </div>
+
   </div>
 </div>

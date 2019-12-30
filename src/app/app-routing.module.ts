@@ -5,7 +5,6 @@ import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
   { path: '', component: RegisterComponent },
-
   { path: 'admin', component: AdminComponent }
   //{ path: 'staticPath', component: ... },
   //{ path: '**', component: ... },

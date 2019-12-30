@@ -1,5 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
-.home{
-    background-image: url("src/app/images/71183584_392795688068453_6173626269473701888_o.jpg");
 
+
+body:before{
+  content: '';
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("src/app/images/71183584_392795688068453_6173626269473701888_o.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+
+  filter: blur(1px);
+}
+body{
+  margin: 0;
+  padding: 0;
 }

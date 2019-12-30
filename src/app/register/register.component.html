@@ -1,39 +1,53 @@
-<div class="container" *ngIf="!showWade">
-  <div class="row">
+<div class="container contact-form" *ngIf=" !showWade">
+  <div class="row ">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
           <label for="firstName">First Name</label>
-          <input type="text" id="firstName" formControlName="firstName" class="form-control">
-          <span *ngIf="!signupForm.get('firstName').valid && signupForm.get('firstName').touched" class="help-block">
+          <input type="text" id="firstName" formControlName="firstName" class="form-control"
+            placeholder="Enter First Name">
+          <span *ngIf="!signupForm.get('firstName').valid && signupForm.get('firstName').touched"
+            class="help-block text-danger text-bold">
             <span *ngIf="signupForm.get('firstName').errors['required']">This field is required!</span>
           </span>
         </div>
         <div class="form-group">
           <label for="lastName">Last Name</label>
-          <input type="text" id="email" formControlName="lastName" class="form-control">
-          <span *ngIf="!signupForm.get('lastName').valid && signupForm.get('lastName').touched" class="help-block">
+          <input type="text" id="email" formControlName="lastName" class="form-control" placeholder="Enter Last Name">
+          <span *ngIf="!signupForm.get('lastName').valid && signupForm.get('lastName').touched"
+            class="help-block text-danger text-bold">
             <span *ngIf="signupForm.get('lastName').errors['required']">This field is required!</span>
           </span>
         </div>
-        <div class="radio" *ngFor="let food of foodOptions">
-          <label>
-            <input type="radio" formControlName="foodOption" [value]="food">{{ food }}
+        <label for="foodOption">Food Choice</label>
+        <div class="form-check mt-2">
+          <label class="form-check-label" for="radio2">
+            <input type="radio" class="form-check-input" id="radio2" formControlName="foodOption" value="Steak">Steak
           </label>
         </div>
-        <div class="form-group">
+        <div class="form-check">
+          <label class="form-check-label">
+            <input type="radio" class="form-check-input" value="Chicken" formControlName="foodOption">Chicken
+          </label>
+        </div>
+
+
+        <div class="form-group mt-5">
           <label for="lastName">If Single Lady Check The Box</label>
           <input type="checkbox" (click)="showWade = true" class="form-control">
         </div>
 
-        <span *ngIf="!signupForm.valid && signupForm.touched" class="help-block">Please enter valid data!</span>
-        <button class="btn btn-primary" type="submit">Submit</button>
+        <span *ngIf="!signupForm.valid && signupForm.touched" class="help-block text-danger text-bold">Please enter
+          valid data!</span>
+
+        <input type="submit" [disabled]="signupForm.invalid" name="" value="Register">
+
       </form>
     </div>
   </div>
 </div>
-<div class="card" *ngIf="showWade">
-  <h2>This Guy is looking for a date</h2>
+<div class="contact-form2" *ngIf=" showWade">
+  <h2 style="color:white; margin-left:500px">This Guy is looking for a date</h2>
   <div class="wade"></div>
   <input type="checkbox" (click)="showWade = false" class="form-control">
 </div>

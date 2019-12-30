@@ -1,4 +1,27 @@
 const Guest = require("../models/guest");
+var nodemailer = require('nodemailer');
+
+
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: 'kernwade@gmail.com',
+    pass: 'membersonly11126'
+  }
+});
+
+var mailOptions = {
+  from: 'kernwade@gmail.com',
+  to: 'kernwade@gmail.com, wadekern700@hotmail.com,tiffanycarter35@hotmail.com',
+  subject: 'Sending Email using Node.js',
+  text: `Hi Smartherd, thank you for your nice Node.js tutorials.
+          I will donate 50$ for this course. Please send me payment options.`
+  // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'
+};
+
+
+
+
 
 exports.createGuest = (req, res, next) => {
   const guest = new Guest({
@@ -12,6 +35,22 @@ exports.createGuest = (req, res, next) => {
   guest
     .save()
     .then(createdGuest => {
+      var mailOptions2 = {
+        from: 'kernwade@gmail.com',
+        to: 'kernwade@gmail.com, wadekern700@hotmail.com,tiffanycarter35@hotmail.com',
+        subject: 'Sending test email for you wedding website',
+        text: 'yellow Tiff and Andrew ' + createdGuest.firstName + ' ' + createdGuest.lastName + ' has registered for yalls wedding they want the meatloaf but actually they want ' + createdGuest.foodOption
+        // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'
+      };
+
+      transporter.sendMail(mailOptions2, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+
       res.status(201).json({
         message: "Guest added successfully",
         guest: {
