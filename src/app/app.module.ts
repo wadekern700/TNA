@@ -8,13 +8,16 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminComponent } from './admin/admin.component';
 import { GuestsFilterPipe } from './guests-filter.pipe';
+import { LoginComponent } from './login/login.component';
+import { LoginGaurd } from './login/login.gaurd';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
     AdminComponent,
-    GuestsFilterPipe
+    GuestsFilterPipe,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +26,7 @@ import { GuestsFilterPipe } from './guests-filter.pipe';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [LoginGaurd],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

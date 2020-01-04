@@ -1,11 +1,14 @@
+import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
+import { LoginGaurd } from './login/login.gaurd';
 
 const routes: Routes = [
   { path: '', component: RegisterComponent },
-  { path: 'admin', component: AdminComponent }
+  { path: 'admin', component: AdminComponent, canActivate: [LoginGaurd] },
+  { path: 'login', component: LoginComponent }
   //{ path: 'staticPath', component: ... },
   //{ path: '**', component: ... },
   //{ path: 'oldPath', redirectTo: '/staticPath' },

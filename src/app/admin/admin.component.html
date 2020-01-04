@@ -1,5 +1,5 @@
 <div class=" test">
-  <div class="row">
+  <div class="row" *ngIf="!showForm">
     <div class="col-sm-8">
 
       <div class="row">
@@ -16,7 +16,8 @@
       <div *ngFor="let g of (guests | guestsFilter : searchValue)">
         <div class="row">
           <div class="col-4">
-            <span>{{g.firstName}}</span>
+            <a class="btn border-top-0 border-left-0 border-right-0 border-primary"
+              (click)="editUser(g)">{{g.firstName}}</a>
           </div>
           <div class="col-4">
             <span> {{g.lastName}} </span>
@@ -44,7 +45,56 @@
         <label class=" text-primary">Seach Guests </label>
         <input class="ml-2" type="text" [(ngModel)]="searchValue" />
       </div>
+      <div class="row">
+        <button class="btn btn-danger mt-5" (click)="deleteAll()">Delete All</button>
+      </div>
     </div>
 
   </div>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" *ngIf="showForm">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" id="firstName" formControlName="firstName" [(ngModel)]="selectedGuest.firstName"
+        class="form-control" placeholder="Enter First Name">
+      <span *ngIf="!signupForm.get('firstName').valid && signupForm.get('firstName').touched"
+        class="help-block text-danger text-bold">
+        <span *ngIf="signupForm.get('firstName').errors['required']">This field is required!</span>
+      </span>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" id="email" formControlName="lastName" [(ngModel)]="selectedGuest.lastName" class="form-control"
+        placeholder="Enter Last Name">
+      <span *ngIf="!signupForm.get('lastName').valid && signupForm.get('lastName').touched"
+        class="help-block text-danger text-bold">
+        <span *ngIf="signupForm.get('lastName').errors['required']">This field is required!</span>
+      </span>
+    </div>
+    <label for="foodOption">Food Choice</label>
+    <div class="form-check mt-2">
+      <label class="form-check-label" for="radio2">
+        <input type="radio" class="form-check-input" id="radio2" [(ngModel)]="selectedGuest.foodOption"
+          formControlName="foodOption" value="Chicken">Chicken
+      </label>
+    </div>
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" value="Steak" [(ngModel)]="selectedGuest.foodOption"
+          formControlName="foodOption">Steak
+      </label>
+    </div>
+
+
+    <div class="form-group mt-5">
+      <label for="lastName">If Single Lady Check The Box</label>
+      <input type="checkbox" (click)="showWade = true" class="form-control">
+    </div>
+
+    <span *ngIf="!signupForm.valid && signupForm.touched" class="help-block text-danger text-bold">Please enter
+      valid data!</span>
+
+    <button type="submit" class="btn btn-primary" [disabled]="signupForm.invalid" name="" value="Update">Update</button>
+    <button class="btn btn-danger" (click)="delete()" [disabled]="signupForm.invalid" name="">Delete</button>
+    <button class="btn btn-warning" (click)="close()">Cancel</button>
+  </form>
 </div>

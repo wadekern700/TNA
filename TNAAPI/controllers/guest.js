@@ -5,8 +5,8 @@ var nodemailer = require('nodemailer');
 var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
-    user: 'kernwade@gmail.com',
-    pass: 'membersonly11126'
+    user: 'vanmeertiffany481@gmail.com',
+    pass: 'Milo69!!'
   }
 });
 
@@ -31,13 +31,14 @@ exports.createGuest = (req, res, next) => {
   });
   console.log(req.body);
 
-
+  // tiffanycarter35@hotmail.com
   guest
     .save()
     .then(createdGuest => {
+      console.log(createdGuest)
       var mailOptions2 = {
-        from: 'kernwade@gmail.com',
-        to: 'kernwade@gmail.com, wadekern700@hotmail.com,tiffanycarter35@hotmail.com',
+        from: 'vanmeertiffany481@gmail.com',
+        to: 'kernwade@gmail.com, wadekern700@hotmail.com',
         subject: 'Sending test email for you wedding website',
         text: 'yellow Tiff and Andrew ' + createdGuest.firstName + ' ' + createdGuest.lastName + ' has registered for yalls wedding they want the meatloaf but actually they want ' + createdGuest.foodOption
         // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'
@@ -66,7 +67,57 @@ exports.createGuest = (req, res, next) => {
       });
     });
 };
+exports.updateGuest = (req, res, next) => {
+  console.log("in update")
+  const guest = new Guest({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    foodOption: req.body.foodOption,
+    _id: req.body.id
+  });
+  console.log(req.body)
+  console.log("in update2")
+  Guest.updateOne({ _id: req.params.id }, guest)
+    .then(result => {
+      console.log("in update3")
+      console.log(result)
+      if (result.n > 0) {
+        console.log(result)
+        res.status(200).json({ message: "Update successful!" });
+      } else {
+        res.status(401).json({ message: "Not authorized!" });
+      }
+    })
+    .catch(error => {
+      console.log(error)
+      res.status(500).json({
+        message: "Couldn't udpate Guest!"
+      });
+    });
+};
 
+exports.deleteAll = (req, res, next) => {
+  Guest.deleteMany({}).then(result => console.log('all deleted'))
+}
+
+exports.deleteGuest = (req, res, next) => {
+  // console.log('delete post')
+  // Guest.deleteMany({}).then(result => console.log('all deleted'))
+  Guest.deleteOne({ _id: req.params.id })
+    .then(result => {
+      console.log(result);
+      if (result.n > 0) {
+        res.status(200).json({ message: "Deletion successful!" });
+      } else {
+        res.status(401).json({ message: "Not authorized!" });
+      }
+    })
+    .catch(error => {
+      res.status(500).json({
+        message: "Deleting posts failed!"
+      });
+    });
+};
 exports.getGuests = (req, res, next) => {
   // const pageSize = +req.query.pagesize;
   // const currentPage = +req.query.page;
@@ -78,7 +129,7 @@ exports.getGuests = (req, res, next) => {
   guestsQuery
     .then(documents => {
       fetchedGuests = documents;
-      console.log(documents)
+
       return Guest.count();
     })
     .then(count => {
