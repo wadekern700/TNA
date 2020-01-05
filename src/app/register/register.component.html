@@ -22,42 +22,59 @@
   <div class="row justify-content-center">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
       <form [formGroup]="signupForm" class="justify-content-center" (ngSubmit)="onSubmit()">
-        <div class="form-group">
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" formControlName="firstName" class="form-control"
-            placeholder="Enter First Name">
-          <span *ngIf="!signupForm.get('firstName').valid && signupForm.get('firstName').touched"
-            class="help-block text-danger text-bold">
-            <span *ngIf="signupForm.get('firstName').errors['required']">This field is required!</span>
-          </span>
+        <div>
+          <div class="form-group">
+            <label for="firstName">{{firstName}}</label>
+            <input type="text" id="firstName" formControlName="firstName" class="form-control"
+              placeholder="Enter First Name">
+            <span *ngIf="!signupForm.get('firstName').valid && signupForm.get('firstName').touched"
+              class="help-block text-danger text-bold">
+              <span *ngIf="signupForm.get('firstName').errors['required']">This field is required!</span>
+            </span>
+          </div>
+          <div class="form-group">
+            <label for="lastName">{{lastName}}</label>
+            <input type="text" id="email" formControlName="lastName" class="form-control" placeholder="Enter Last Name">
+            <span *ngIf="!signupForm.get('lastName').valid && signupForm.get('lastName').touched"
+              class="help-block text-danger text-bold">
+              <span *ngIf="signupForm.get('lastName').errors['required']">This field is required!</span>
+            </span>
+          </div>
+          <label for="foodOption">Food Choice</label>
+          <div class="form-check mt-2">
+            <label class="form-check-label" for="radio2">
+              <input type="radio" class="form-check-input w-auto" id="radio2" formControlName="foodOption"
+                value="steak">Beef Tenderloin
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input w-auto" value="lobster" formControlName="foodOption">Lobster
+              Arancini
+            </label>
+          </div>
+          <div class="form-check">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input w-auto" value="mac" formControlName="foodOption">Mac & Cheese
+              (vegetarian)
+            </label>
+          </div>
+          <label *ngIf="showDate" class="mt-2 d-block">Add Another Person</label>
+          <div *ngIf="showDate" class="form-check form-check-inline mt-2">
+            <label class="form-check-label" for="addGuestYes">
+              <input type="radio" class="form-check-input w-auto" id="addGuestYes" formControlName="addGuest"
+                [value]="true">Yes
+            </label>
+
+          </div>
+          <div *ngIf="showDate" class="form-check form-check-inline">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input w-auto" [value]="false" formControlName="addGuest">No
+            </label>
+          </div>
         </div>
-        <div class="form-group">
-          <label for="lastName">Last Name</label>
-          <input type="text" id="email" formControlName="lastName" class="form-control" placeholder="Enter Last Name">
-          <span *ngIf="!signupForm.get('lastName').valid && signupForm.get('lastName').touched"
-            class="help-block text-danger text-bold">
-            <span *ngIf="signupForm.get('lastName').errors['required']">This field is required!</span>
-          </span>
-        </div>
-        <label for="foodOption">Food Choice</label>
-        <div class="form-check mt-2">
-          <label class="form-check-label" for="radio2">
-            <input type="radio" class="form-check-input w-auto" id="radio2" formControlName="foodOption"
-              value="steak">Beef Tenderloin
-          </label>
-        </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="radio" class="form-check-input w-auto" value="lobster" formControlName="foodOption">Lobster
-            Arancini
-          </label>
-        </div>
-        <div class="form-check">
-          <label class="form-check-label">
-            <input type="radio" class="form-check-input w-auto" value="mac" formControlName="foodOption">Mac & Cheese
-            (vegetarian)
-          </label>
-        </div>
+
+
 
 
         <!-- <div class="form-group mt-5"
@@ -66,10 +83,9 @@
           <input type="checkbox" (click)="showWade = true" class="form-control">
         </div> -->
 
-        <span *ngIf="!signupForm.valid && signupForm.touched" class="help-block text-danger text-bold">Please enter
-          valid data!</span>
 
-        <input type="submit" [disabled]="signupForm.invalid" name="" value="Register">
+        <input type="submit" [disabled]="signupForm.invalid" name=""
+          [value]="signupForm.get('addGuest').value? 'Next' : 'Register'">
 
       </form>
     </div>
@@ -97,13 +113,5 @@
   <div class="row mb-3 justify-content-start">
     <img id="map" width="32px" src="/assets/phone.png" />
     <a class="font-normal pl-2" href="tel:519-694-3245">Call or text</a>
-  </div>
-  <div class="row mb-3 justify-content-center" *ngIf="showMap">
-    <p>
-      When using GPS, please use latitude and longitude posted above or use the embedded map below
-    </p>
-    <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d784.9185062657422!2d-82.67323351187015!3d42.137165993177724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDA4JzEzLjgiTiA4MsKwNDAnMjEuNyJX!5e1!3m2!1sen!2sca!4v1578255408036!5m2!1sen!2sca"
-      width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
   </div>
 </div>

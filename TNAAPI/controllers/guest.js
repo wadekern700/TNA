@@ -44,13 +44,13 @@ exports.createGuest = (req, res, next) => {
         // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'
       };
 
-      transporter.sendMail(mailOptions2, function (error, info) {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
+      // transporter.sendMail(mailOptions2, function (error, info) {
+      //   if (error) {
+      //     console.log(error);
+      //   } else {
+      //     console.log('Email sent: ' + info.response);
+      //   }
+      // });
 
       res.status(201).json({
         message: "Guest added successfully",
