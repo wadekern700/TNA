@@ -12,7 +12,6 @@ export class LoginGaurd implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
-    console.log('in guard')
     if (!localStorage.getItem("token")) {
       this.router.navigate(['/login']);
       return false;

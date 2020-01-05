@@ -11,7 +11,7 @@ export class RegisterComponent implements OnInit {
   constructor(private guestService: GuestService) { }
   signupForm: FormGroup;
   foodOptions = ['Steak', 'Chicken'];
-  showWade: boolean = false;
+  showThankyou: boolean = false;
   ngOnInit() {
 
     this.signupForm = new FormGroup({
@@ -23,10 +23,14 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log(this.signupForm.value.foodOption);
     if (!this.signupForm.invalid) {
       this.guestService.addGuest(this.signupForm.value.firstName, this.signupForm.value.lastName, this.signupForm.value.foodOption);
     }
+
     this.signupForm.reset();
+
+    this.showThankyou = true;
   }
 
 }

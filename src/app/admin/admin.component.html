@@ -34,12 +34,16 @@
         {{": "+guests.length}}
       </div>
       <div class="row">
-        <label class=" text-primary">Chicken Count </label>
-        {{": "+chickenCount}}
+        <label class=" text-primary">Lobster Count </label>
+        {{": "+lobsterCount}}
       </div>
       <div class="row">
         <label class=" text-primary">Steak Count </label>
         {{": "+steakCount}}
+      </div>
+      <div class="row">
+        <label class=" text-primary">Mac & Cheese Count </label>
+        {{": "+maccheeseCount}}
       </div>
       <div class="row">
         <label class=" text-primary">Seach Guests </label>
@@ -71,20 +75,26 @@
       </span>
     </div>
     <label for="foodOption">Food Choice</label>
+
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input" value="steak" [(ngModel)]="selectedGuest.foodOption"
+          formControlName="foodOption">Beef Tenderloin
+      </label>
+    </div>
+
+    <div class="form-check">
+      <label class="form-check-label">
+        <input type="radio" class="form-check-input w-auto" value="lobster" formControlName="foodOption">Lobster
+        Arancini
+      </label>
+    </div>
     <div class="form-check mt-2">
       <label class="form-check-label" for="radio2">
         <input type="radio" class="form-check-input" id="radio2" [(ngModel)]="selectedGuest.foodOption"
-          formControlName="foodOption" value="Chicken">Chicken
+          formControlName="foodOption" value="mac">Mac & Cheese
       </label>
     </div>
-    <div class="form-check">
-      <label class="form-check-label">
-        <input type="radio" class="form-check-input" value="Steak" [(ngModel)]="selectedGuest.foodOption"
-          formControlName="foodOption">Steak
-      </label>
-    </div>
-
-
     <div class="form-group mt-5">
       <label for="lastName">If Single Lady Check The Box</label>
       <input type="checkbox" (click)="showWade = true" class="form-control">

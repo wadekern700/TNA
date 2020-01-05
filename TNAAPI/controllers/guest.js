@@ -38,9 +38,9 @@ exports.createGuest = (req, res, next) => {
       console.log(createdGuest)
       var mailOptions2 = {
         from: 'vanmeertiffany481@gmail.com',
-        to: 'kernwade@gmail.com, wadekern700@hotmail.com',
-        subject: 'Sending test email for you wedding website',
-        text: 'yellow Tiff and Andrew ' + createdGuest.firstName + ' ' + createdGuest.lastName + ' has registered for yalls wedding they want the meatloaf but actually they want ' + createdGuest.foodOption
+        to: 'andrew.vanmeer@gmail.com, tiffanycarter35@hotmail.com',
+        subject: createdGuest.firstName + ' ' + createdGuest.lastName + '  has registered for the wedding',
+        text: 'Hello Tiff and Andrew ' + createdGuest.firstName + ' ' + createdGuest.lastName + ' has registered for yalls wedding and they ordered ' + createdGuest.foodOption
         // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'
       };
 

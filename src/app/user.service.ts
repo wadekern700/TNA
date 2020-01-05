@@ -51,7 +51,6 @@ export class UserService {
 
   login(email: string, password: string) {
     const authData: any = { email: email, password: password };
-    console.log(authData);
     this.http
       .post<{ token: string; expiresIn: number; userId: string }>(
         BACKEND_URL + "/login",
@@ -59,7 +58,6 @@ export class UserService {
       )
       .subscribe(
         response => {
-          console.log(response);
           const token = response.token;
           this.token = token;
           if (token) {
@@ -71,7 +69,6 @@ export class UserService {
             const expirationDate = new Date(
               now.getTime() + expiresInDuration * 1000
             );
-            console.log(expirationDate);
             this.saveAuthData(token, expirationDate, this.userId);
             this.router.navigate(["admin"]);
           }
@@ -109,14 +106,12 @@ export class UserService {
   }
 
   private setAuthTimer(duration: number) {
-    console.log("Setting timer: " + duration);
     this.tokenTimer = setTimeout(() => {
       this.logout();
     }, duration * 1000);
   }
 
   private saveAuthData(token: string, expirationDate: Date, userId: string) {
-    console.log('setting  token')
     localStorage.setItem("token", token);
     localStorage.setItem("expiration", expirationDate.toISOString());
     localStorage.setItem("userId", userId);

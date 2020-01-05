@@ -24,22 +24,16 @@ export class GuestService {
     };
     this.http.post(BACKEND_URL, guestData).subscribe(val => {
 
-      console.log(val);
-
     }
     );
   }
 
   getGuests() {
     this.http.get<any>(BACKEND_URL).subscribe(guests => {
-      console.log(guests)
       this.guestsUpdated.next(guests.guests);
     });
   }
   delete(id: string) {
-    console.log('in delete service ' + id)
-    console.log(id);
-    console.log(BACKEND_URL + id)
 
     this.http.delete(BACKEND_URL + id).subscribe(val => this.getGuests());
 
@@ -57,7 +51,6 @@ export class GuestService {
     this.http
       .put(BACKEND_URL + id, guestData)
       .subscribe(response => {
-        console.log(response);
         this.getGuests();
       });
   }

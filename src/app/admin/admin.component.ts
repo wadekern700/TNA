@@ -14,8 +14,9 @@ export class AdminComponent implements OnInit {
 
   constructor(private guestService: GuestService, private userService: UserService) { }
   guests: guest[];
-  chickenCount: number = 0;
+  lobsterCount: number = 0;
   steakCount: number = 0;
+  maccheeseCount: number = 0;
   searchValue: string = "";
   showForm: boolean = false;
   signupForm: FormGroup;
@@ -27,9 +28,9 @@ export class AdminComponent implements OnInit {
     this.guestService.guestsUpdated.subscribe(guests => {
       this.showForm = false;
       this.guests = guests;
-      console.log(this.guests)
-      this.chickenCount = this.guests.filter(g => g.foodOption.toLowerCase() === 'chicken').length;
+      this.lobsterCount = this.guests.filter(g => g.foodOption.toLowerCase() === 'lobster').length;
       this.steakCount = this.guests.filter(g => g.foodOption.toLowerCase() === 'steak').length;
+      this.maccheeseCount = this.guests.filter(g => g.foodOption.toLowerCase() === 'mac').length;
     })
     this.signupForm = new FormGroup({
       'firstName': new FormControl(null, [Validators.required]),
@@ -39,15 +40,12 @@ export class AdminComponent implements OnInit {
   }
   editUser(g: any) {
     this.selectedGuest = g;
-    console.log(g)
     this.showForm = true;
   }
   close() {
     this.showForm = false;
   }
   delete() {
-    console.log('in delete comp')
-    console.log(this.selectedGuest)
     this.guestService.delete(this.selectedGuest._id.toString());
   }
   deleteAll() {
@@ -59,6 +57,7 @@ export class AdminComponent implements OnInit {
   }
   onSubmit() {
     if (!this.signupForm.invalid) {
+      console.log(this.selectedGuest.foodOption);
       this.guestService.update(this.selectedGuest.firstName, this.selectedGuest.lastName,
         this.selectedGuest.foodOption, this.selectedGuest._id.toString());
     }

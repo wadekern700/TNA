@@ -10,6 +10,7 @@ import { AdminComponent } from './admin/admin.component';
 import { GuestsFilterPipe } from './guests-filter.pipe';
 import { LoginComponent } from './login/login.component';
 import { LoginGaurd } from './login/login.gaurd';
+import { ThankyouComponent } from './thankyou/thankyou.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LoginGaurd } from './login/login.gaurd';
     RegisterComponent,
     AdminComponent,
     GuestsFilterPipe,
-    LoginComponent
+    LoginComponent,
+    ThankyouComponent
   ],
   imports: [
     BrowserModule,
