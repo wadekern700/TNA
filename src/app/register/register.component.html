@@ -1,4 +1,4 @@
-<div class="container contact-form" *ngIf=" !showThankyou">
+<div class="container contact-form" *ngIf="!showThankyou">
   <div class="row mb-3 justify-content-center text-center">
     <h1 class="heading2 ">
       You are warmly invited to the wedding of
@@ -83,19 +83,27 @@
     </h1>
   </div>
   <div class="row mb-3 justify-content-center">
-    <h1 class="heading1 ">
+    <h1 class="heading1">
       We look forward to celebrating our wedding with you
     </h1>
   </div>
-  <div class="row mb-3 justify-content-center">
-    <h1 class="heading2">
-      04/07/2019
-    </h1>
+  <div class="row mb-3 justify-content-start">
+    <img id="map" width="32px" src="/assets/map40.png" />
+    <a class="font-normal pl-2" style="line-height: 15px;" href="https://goo.gl/maps/zLscGsTtMFwsdu7j6" target="_blank">
+      Directions<br />
+      <span style="font-size: 12px; font-weight: 100;">Latitude: 42.137165 Logitude: -82.672685</span>
+    </a>
   </div>
-  <div class="row mb-3 justify-content-center">
-    <h1 class="heading2">
-      RSVP
-    </h1>
+  <div class="row mb-3 justify-content-start">
+    <img id="map" width="32px" src="/assets/phone.png" />
+    <a class="font-normal pl-2" href="tel:519-694-3245">Call or text</a>
   </div>
-
+  <div class="row mb-3 justify-content-center" *ngIf="showMap">
+    <p>
+      When using GPS, please use latitude and longitude posted above or use the embedded map below
+    </p>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d784.9185062657422!2d-82.67323351187015!3d42.137165993177724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDLCsDA4JzEzLjgiTiA4MsKwNDAnMjEuNyJX!5e1!3m2!1sen!2sca!4v1578255408036!5m2!1sen!2sca"
+      width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+  </div>
 </div>
