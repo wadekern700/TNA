@@ -59,15 +59,15 @@
               (vegetarian)
             </label>
           </div>
-          <label *ngIf="showDate" class="mt-2 d-block">Add Another Person</label>
-          <div *ngIf="showDate" class="form-check form-check-inline mt-2">
+          <label *ngIf="showDate && allowDate" class="mt-2 d-block">Add Another Person</label>
+          <div *ngIf="showDate && allowDate" class="form-check form-check-inline mt-2">
             <label class="form-check-label" for="addGuestYes">
               <input type="radio" class="form-check-input w-auto" id="addGuestYes" formControlName="addGuest"
                 [value]="true">Yes
             </label>
 
           </div>
-          <div *ngIf="showDate" class="form-check form-check-inline">
+          <div *ngIf="showDate && allowDate" class="form-check form-check-inline">
             <label class="form-check-label">
               <input type="radio" class="form-check-input w-auto" [value]="false" formControlName="addGuest">No
             </label>

@@ -1,6 +1,7 @@
 import { GuestService } from './../guest.service';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -8,7 +9,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterComponent implements OnInit {
 
-  constructor(private guestService: GuestService) { }
+  constructor(private guestService: GuestService, private route: ActivatedRoute) { }
   signupForm: FormGroup;
   foodOptions = ['Steak', 'Chicken'];
   showThankyou: boolean = false;
@@ -16,9 +17,10 @@ export class RegisterComponent implements OnInit {
   addGuest: boolean = false;
   firstName: string = 'First Name';
   guestOf: string;
+  allowDate: boolean = true;
   lastName: string = 'Last Name';
   ngOnInit() {
-
+    this.allowDate = this.route.snapshot.queryParams['ad'] !== 'false';
     this.signupForm = new FormGroup({
       'firstName': new FormControl(null, [Validators.required]),
       'lastName': new FormControl(null, [Validators.required]),
