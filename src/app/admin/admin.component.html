@@ -85,9 +85,8 @@
 
     <div class="form-check">
       <label class="form-check-label">
-        <input type="radio" class="form-check-input w-auto" value="lobster"
-          [(ngModel)]="selectedGuest.foodOption">Lobster
-        Arancini
+        <input type="radio" class="form-check-input w-auto" formControlName="foodOption" value="lobster"
+          [(ngModel)]="selectedGuest.foodOption">Lobster Arancini
       </label>
     </div>
     <div class="form-check mt-2">
