@@ -17,10 +17,10 @@ export class RegisterComponent implements OnInit {
   addGuest: boolean = false;
   firstName: string = 'First Name';
   guestOf: string;
-  allowDate: boolean = true;
+  allowDate: boolean = false;
   lastName: string = 'Last Name';
   ngOnInit() {
-    this.allowDate = this.route.snapshot.queryParams['ad'] !== 'false';
+    this.allowDate = this.route.snapshot.queryParams['ad'] === 'true';
     this.signupForm = new FormGroup({
       'firstName': new FormControl(null, [Validators.required]),
       'lastName': new FormControl(null, [Validators.required]),
