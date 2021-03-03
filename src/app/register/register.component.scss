@@ -1,6 +1,10 @@
 p,h1, h2, h3 {
   color: #fff;
 }
+.footing{
+ font-size:  1rem;
+ display: inline;
+}
 
 p {
   font-weight: 100;
@@ -78,12 +82,7 @@ p {
   cursor: not-allowed;
 }
 
-.contact-form a {
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  text-decoration: none;
-}
+
 
 input[type="checkbox"] {
   width: 20%;
@@ -113,7 +112,21 @@ input.ng-invalid.ng-touched {
   font-size:20px;
   font-family: Apple Chancery, cursive;
 }
+.heading22{
+  color: #fff;
+  font-size:20px;
+  font-family: sans-serif;
+}
 
+.hotelLink{
+  color: #fff;
+  font-size:24px;
+  font-family: sans-serif;
+  text-decoration:underline;
+  text-decoration-color: blue;
+  cursor: pointer;
+  color: beige;
+}
 .contact-form[_ngcontent-spx-c1] input[_ngcontent-spx-c1] {
  width: 0%;
   margin-bottom: 20px;

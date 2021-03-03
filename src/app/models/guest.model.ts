@@ -1,6 +1,7 @@
 export interface guest {
   firstName: string,
   lastName: string,
-  foodOption: string,
+  dateOption: any,
+  drinking: boolean,
   _id: number;
 };

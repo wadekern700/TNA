@@ -1,49 +1,48 @@
-<div class=" test">
+<div class="test">
+
   <div class="row" *ngIf="!showForm">
     <div class="col-sm-8">
 
       <div class="row">
-        <div class="col-4">
+        <div class="col-3">
           <label class=" text-primary">FirstName</label>
         </div>
-        <div class="col-4">
+        <div class="col-3">
           <label class=" text-primary">LastName</label>
         </div>
-        <div class="col-4">
-          <label class=" text-primary" for="">Food</label>
+        <div class="col-3">
+          <label class=" text-primary" for="">Passengers</label>
+        </div>
+        <div class="col-3">
+          <label class=" text-primary" for="">Checked Disclaimer</label>
         </div>
       </div>
       <div *ngFor="let g of (guests | guestsFilter : searchValue)">
         <div class="row">
-          <div class="col-4">
+          <div class="col-3">
             <a class="btn border-top-0 border-left-0 border-right-0 border-primary"
               (click)="editUser(g)">{{g.firstName}}</a>
           </div>
-          <div class="col-4">
+          <div class="col-3">
             <span> {{g.lastName}} </span>
           </div>
-          <div class="col-4">
-            <span> {{g.foodOption}} </span>
+          <div class="col-3">
+            <span *ngFor="let item of g.dateOption"> {{item}} </span>
+          </div>
+          <div class="col-3">
+            <span class="text-primary" for=""> {{g.drinking}}</span>
           </div>
         </div>
       </div>
     </div>
     <div class="col-sm-4">
       <div class="row">
-        <label class=" text-primary">Total Registered</label>
+        <label class=" text-primary">Total Cars Registered</label>
         {{": "+guests.length}}
       </div>
       <div class="row">
-        <label class=" text-primary">Lobster Count </label>
-        {{": "+lobsterCount}}
-      </div>
-      <div class="row">
-        <label class=" text-primary">Steak Count </label>
-        {{": "+steakCount}}
-      </div>
-      <div class="row">
-        <label class=" text-primary">Mac & Cheese Count </label>
-        {{": "+maccheeseCount}}
+        <label class=" text-primary">Total People Count</label>
+        {{": "+totalPeopleCount}}
       </div>
       <div class="row">
         <label class=" text-primary">Seach Guests </label>
@@ -74,31 +73,19 @@
         <span *ngIf="signupForm.get('lastName').errors['required']">This field is required!</span>
       </span>
     </div>
-    <label for="foodOption">Food Choice</label>
+    <label class="mt-2 d-block">Add passengers in your
+      vehicle </label>
 
-    <div class="form-check">
-      <label class="form-check-label">
-        <input type="radio" class="form-check-input" value="steak" [(ngModel)]="selectedGuest.foodOption"
-          formControlName="foodOption">Beef Tenderloin
-      </label>
-    </div>
-
-    <div class="form-check">
-      <label class="form-check-label">
-        <input type="radio" class="form-check-input w-auto" formControlName="foodOption" value="lobster"
-          [(ngModel)]="selectedGuest.foodOption">Lobster Arancini
-      </label>
-    </div>
-    <div class="form-check mt-2">
-      <label class="form-check-label" for="radio2">
-        <input type="radio" class="form-check-input" id="radio2" [(ngModel)]="selectedGuest.foodOption"
-          formControlName="foodOption" value="mac">Mac & Cheese
-      </label>
-    </div>
-    <div class="form-group mt-5">
+    <ng-container formArrayName="passengers">
+      <div class=" form-group" *ngFor="let control of passengers.controls; index as i">
+        <input type="text" class="form-control" placeholder="Passenger Full Name"
+          [formControl]="passengers.controls[i]" />
+      </div>
+    </ng-container>
+    <!-- <div class="form-group mt-5">
       <label for="lastName">If Single Lady Check The Box</label>
       <input type="checkbox" (click)="showWade = true" class="form-control">
-    </div>
+    </div> -->
 
     <span *ngIf="!signupForm.valid && signupForm.touched" class="help-block text-danger text-bold">Please enter
       valid data!</span>

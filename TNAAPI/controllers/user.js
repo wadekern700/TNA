@@ -4,9 +4,9 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user");
 
 exports.createUser = (req, res, next) => {
-  bcrypt.hash('milo69', 10).then(hash => {
+  bcrypt.hash("test123", 10).then(hash => {
     const user = new User({
-      email: 'testemail',
+      email: "info@test.com",
       password: hash
     });
     user
@@ -18,22 +18,21 @@ exports.createUser = (req, res, next) => {
         });
       })
       .catch(err => {
-        console.log("in error")
+        console.log("in error");
         res.status(500).json({
-
           message: "Invalid authentication credentials!"
         });
       });
   });
-}
+};
 
 exports.userLogin = (req, res, next) => {
-  console.log('in login')
+  console.log("in login");
   let fetchedUser;
-  console.log(req.body)
+  console.log(req.body);
   User.findOne({ email: req.body.email })
     .then(user => {
-      console.log(user)
+      console.log(user);
       if (!user) {
         return res.status(401).json({
           message: "Auth failed"
@@ -64,4 +63,4 @@ exports.userLogin = (req, res, next) => {
         message: "Invalid authentication credentials!"
       });
     });
-}
+};

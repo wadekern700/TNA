@@ -16,12 +16,14 @@ export class GuestService {
 
   constructor(private http: HttpClient, private router: Router) { }
   guestsUpdated = new ReplaySubject<guest[]>();
-  addGuest(firstName: string, lastName: string, food: string) {
+  addGuest(firstName: string, lastName: string, food: string, drinking: boolean) {
     const guestData = {
       firstName,
       lastName,
-      foodOption: food
+      dateOption: food,
+      drinking: drinking
     };
+    console.log(guestData)
     this.http.post(BACKEND_URL, guestData).subscribe(val => {
 
     }
@@ -44,13 +46,14 @@ export class GuestService {
     const guestData = {
       firstName,
       lastName,
-      foodOption: food,
+      dateOption: food,
       id: id
     };
-
+    console.log(guestData)
     this.http
       .put(BACKEND_URL + id, guestData)
       .subscribe(response => {
+        console.log(response)
         this.getGuests();
       });
   }

@@ -6,7 +6,7 @@ var transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: 'vanmeertiffany481@gmail.com',
-    pass: 'Milo69!!'
+    pass: 'corona!9'
   }
 });
 
@@ -27,7 +27,8 @@ exports.createGuest = (req, res, next) => {
   const guest = new Guest({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    foodOption: req.body.foodOption
+    dateOption: req.body.dateOption,
+    drinking: req.body.drinking
   });
   console.log(req.body);
 
@@ -40,17 +41,17 @@ exports.createGuest = (req, res, next) => {
         from: 'vanmeertiffany481@gmail.com',
         to: 'andrew.vanmeer@gmail.com, tiffanycarter35@hotmail.com',
         subject: createdGuest.firstName + ' ' + createdGuest.lastName + '  has registered for the wedding',
-        text: 'Hello Tiff and Andrew ' + createdGuest.firstName + ' ' + createdGuest.lastName + ' has registered for yalls wedding and they ordered ' + createdGuest.foodOption
+        text: 'Hello Tiff and Andrew ' + createdGuest.firstName + ' ' + createdGuest.lastName + ' has registered for yalls wedding and selected dates ' + createdGuest.dateOption
         // html: '<h1>Hi Smartherd</h1><p>Your Messsage</p>'
       };
 
-      // transporter.sendMail(mailOptions2, function (error, info) {
-      //   if (error) {
-      //     console.log(error);
-      //   } else {
-      //     console.log('Email sent: ' + info.response);
-      //   }
-      // });
+      transporter.sendMail(mailOptions2, function (error, info) {
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
 
       res.status(201).json({
         message: "Guest added successfully",
@@ -72,7 +73,7 @@ exports.updateGuest = (req, res, next) => {
   const guest = new Guest({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    foodOption: req.body.foodOption,
+    dateOption: req.body.dateOption,
     _id: req.body.id
   });
   console.log(req.body)
