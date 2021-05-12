@@ -28,7 +28,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.3",
     "nodejs-nodemailer-outlook": "^1.2.1",
-    "nodemailer": "^6.4.2",
+    "nodemailer": "^6.4.16",
     "rxjs": "~6.4.0",
     "sendmail": "^1.6.1",
     "tslib": "^1.9.0",
